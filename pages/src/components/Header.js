@@ -1,8 +1,5 @@
-import { AppBar } from "@mui/material";
+import { AppBar, Button, Container, Toolbar } from "@mui/material";
 import Link from "next/link";
-import { Button } from "@mui/material";
-import { Container } from "@mui/material";
-import { Toolbar } from "@mui/material";
 
 export default function Header() {
   return (
@@ -14,7 +11,6 @@ export default function Header() {
               Home
             </Button>
           </Link>
-
           <Link href="/cards" passHref>
             <Button component="a" sx={{ color: "white" }}>
               Cards
