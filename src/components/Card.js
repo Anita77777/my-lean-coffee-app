@@ -7,6 +7,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { useSWRConfig } from "swr";
 
 export default function Card(props) {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -31,6 +32,7 @@ export default function Card(props) {
 }
 
 function CardModeShow({ id, content, name, onEnableEditMode }) {
+  const { mutate } = useSWRConfig();
   return (
     <>
       <CardContent>
@@ -46,6 +48,7 @@ function CardModeShow({ id, content, name, onEnableEditMode }) {
             const response = await fetch("/api/card/" + id, {
               method: "DELETE",
             });
+            mutate("/api/cards");
           }}
         >
           Delete
@@ -73,6 +76,8 @@ function CardModeEdit({ id, content, name, onDisableEditMode }) {
         name: nameValue,
       }),
     });
+
+    mutate("/api/cards");
     onDisableEditMode();
   }
   return (
